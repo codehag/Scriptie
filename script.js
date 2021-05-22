@@ -118,7 +118,7 @@ Examples{
   // task. if there is no cinnamon, we will fully populate the selected spices array
 
   //How many shoes do I have
-  let AmountOfShoes: do {
+  let AmountOfShoes = do {
     while (ShoeRack != 0) {
     ShoeRack--;
     let x = x + 1;
@@ -130,7 +130,7 @@ Examples{
 // Ask: How would you fix this?
 
 // Can I play outside?
-bool playOutside: do {
+let playOutside = do {
   if (homework()) {
     while (!timeToBed()) {
       yes;
