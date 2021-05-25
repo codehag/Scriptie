@@ -27,7 +27,7 @@ Preparation {
 
 // What do you think the intention of this code is?
 
-// What are the possible outputs?
+// What value does this variable have after this code runs
 
 // Can you describe the steps you expect to be performed?
 Examples{
@@ -94,72 +94,70 @@ Examples{
   }
   // correct output : null
 
-  // I am allergic to cinnamon. I am searching the spice cabinet for different spices containing
-  // garlic.
-  let selectedSpices = []
-  for (item in spiceRack) {
-    let label = do {
-      let spiceContainer = get(item);
-      if (spiceContainer.contains("cinnimon")) {
-        break;
-      }
-      if (!spiceContainer.contains("garlic")) {
+
+  let people = [
+    { name: 'Alice', age: '42' },
+    { name: 'Bob', age: 'unknown' },
+    { name: 'Carol', age: '45' },
+  ];
+  let maxAge = -Infinity;
+  for (let person of people) {
+    let age = do {
+      if (person.age == 'unknown') {
         continue;
       }
-      readLabel(spiceContainer);
+      parseInt(item.age)
+    };
+    if (age > maxAge) {
+      maxAge = age;
     }
-    selectedSpices.push(takeSpice(label, item))
   }
 
-  // what happens if I go through the entire cabinet, and there is no cinnamon? What happens if
-  // there is cinnamon?
-  //
-  // Answer, if there is cinnamon we will break out of the loop completely without completing the
-  // task. if there is no cinnamon, we will fully populate the selected spices array
+
 
   //How many shoes do I have
   let AmountOfShoes = do {
     while (ShoeRack != 0) {
-    ShoeRack--;
-    let x = x + 1;
-  }
-};
-// correct output : error
-// with this question, we want to understan how people will interpret this step. It is less
-// interesting if they get it right or wrong.
-// Ask: How would you fix this?
-
-// Can I play outside?
-let playOutside = do {
-  if (homework()) {
-    while (!timeToBed()) {
-      yes;
+      ShoeRack--;
+      let x = x + 1;
     }
-  } else {
-    no;
-  }
-};
-// correct answer = error
-// this is quite similar to above, but in a nested statement.
-// Ask: how would you fix this?
+  };
+  // correct output : error
+  // with this question, we want to understan how people will interpret this step. It is less
+  // interesting if they get it right or wrong.
+  // Ask: How would you fix this?
 
-//Can I go to the mall?
-let goMall = do {
-  if (mallOpen) {
-    yes;
+  // Can I play outside?
+  let playOutside = do {
+    if (homework()) {
+      while (!timeToBed()) {
+        true;
+      }
+    } else {
+      false;
+    }
+  };
+  // correct answer = error
+  // this is quite similar to above, but in a nested statement.
+  // Ask: how would you fix this?
+
+  //Can I go to the mall?
+  let goMall = do {
+    if (mallOpen) {
+      true;
+    }
+    else {
+      false;
+    }
   }
-  else {
-    no;
-  }
-}
   //correct answer = boolean
 
   //Can I buy new shoes?
   let BuyShoes = do {
-  if (priceShoes < amountBank) {
-    yes;
+    if (priceShoes < amountBank) {
+      true;
+    }
   }
-}
   // correct answer = error
   // Ask: How would you fix this?
 
