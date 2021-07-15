@@ -36,62 +36,248 @@ Examples{
     let tmp = 5;
     tmp * tmp + 1
   };
+  
+  `x` will evaluate to 26
+  
   //correct output : 26
 
 
   //temporary variables (animal is created locally)
+  
+  function getAnimal() {
+    return {
+      type: "cat",
+      color: "white"
+  };
+  
   let isMyPet = do {
     let animal = getAnimal():
     (isCat(animal) && isWhite(animal)) || (isDog(animal) && isBlack(animal))
   };
-  //correct output : boolean
 
-  let x = do {
-    let y = 1;
-  };
-  //correct output : early error
+  `isMyPet` will evaluate to true.
+    
+  //correct output : boolean
 
   let x = do {
     0;
   }
+  What does `x` evaluate to?
+    * 0
+    * undefined
+    * null
+    * Error  
+    
   //correct output : 0
 
+  let x = do {
+    let y = 1;
+  };
+    
+  What does `x` evaluate to?
+    * 1
+    * undefined
+    * null
+    * Error
+    
+  //correct output : early error
+
   // Want to know how old is my mom going to be this year
-  let age = do {
-    let myMomsAge = currentYear() - 1960
-    myMomsAge + 1;
+    
+  function currentYear() {
+    return new Date(Date.now()); // 2021
   }
+
+  let countdown = do {
+    let yearsLeftOfCoronaVirus = currentYear().getFullYear() - 2060;
+    yearsLeftOfCoronaVirus + 1;
+  }
+  
+  What type does `countdown` evaluate to?
+    * Number
+    * Undefined
+    * Null
+    * Error
   //correct output : 62
 
  // ****************************************************************************//
+// more complex features
 
-
+    
+    
   (Conditionals // control flow)
 
-  const blob = '{"userid":Jan, "age":42}';
+  // You have an inquisitive kid asking you questions. They pass you the following code.
 
-  function getUserId(blob) {
+  //Can I go to the mall?
+  let daytime = true;
+   
+  let canIGoOutside = do {
+    if (daytime) {
+      true;
+    }
+    else {
+      false;
+    }
+  }
+  
+  What would you expect the result of `canIGoOutside` to be?
+    * true
+    * false
+    * undefined
+    * Error
+  
+    If daytime == false, what would you expect the result of `canIGoOutside` to be?
+    * true
+    * false
+    * undefined
+    * Error
+  
+  //correct answer = boolean
+
+  //Can I buy new shoes?
+  let priceShoes = 100;
+  let amountBank = 101;
+  let BuyShoes = do {
+    if (priceShoes < amountBank) {
+      true;
+    }
+  }
+
+  What would you expect the result of `BuyShoes` to be?
+    * true
+    * false
+    * undefined
+    * Error
+
+  
+  (if they answer error, add a conditional question)
+    Can you describe why you think this will be an error?
+
+  (if they answer anything but error, add a conditional question)
+  If "priceShoes = 200", What would you expect the result of `BuyShoes` to be?
+    * true
+    * false
+    * undefined
+    * Error
+  
+    (if they answer anything but error, add a conditional question)
+      If the result of this expression was an error, would this surprise you?
+        * yes
+        * no
+
+      Can you describe why?
+
+  // correct answer = error
+  // Ask: How would you fix this?
+
+  let hours = 0;
+   
+  let howLongCanIPlayOutside = do {
+    while (hours < 10) {
+      hours++;
+    }
+  };
+  
+  What would you expect the result of `howLongCanIPlayOutside` to be?
+    * Number (9)
+    * Undefined
+    * Null
+    * Error
+    * Array ([0,1,2,3,4,5,6,7,8,9])
+    * enter an answer
+  
+  (if they answer `error`, add a conditional question)
+    Can you describe why you think this may be an error?
+  
+  (if they answer anything but error, add a conditional question)
+    If the result of this expression was an error, would this surprise you?
+      * yes
+      * no
+      
+    Can you describe why?
+   
+  // next question (!!!!!!!!!! POSSIBLY REMOVE)
+      
+  // the function "homework" returns true
+  // the function "timeForBed" returns true
+  
+  let canIPlayOutside = do {
+    if (homework()) {
+      while (!timeForBed()) {
+        false;
+      }
+    } else {
+      true;
+    }
+  };
+
+ What would you expect the result of `canIPlayOutside` to be?
+    * a boolean
+    * Undefined
+    * Null
+    * Error
+    * Array ([false, false, ..., true])
+    * enter an answer
+  
+  (if they answer `error`, add a conditional question)
+    Can you describe why you think this may be an error?
+  
+  (if they answer anything but error, add a conditional question)
+    If the result of this expression was an error, would this surprise you?
+      * yes
+      * no
+      
+    Can you describe why?
+
+  // correct answer = error  
+   
+      
+  // parseString is always successful, and returns an object populated with the data fields.
+ 
+  const data = '{"userid": "Jan"}';
+
+  function getUserId(user) {
     let obj = do {
       try {
-        JSON.parse(blob)
+        parseString(user); // returns { userid: "Jan" }
+      } catch {
+        return null;
+      }
+    };
+    return obj.userId;
+  }
+
+  const output = getUserId(data);
+
+   What would you expect the result of `output` to be?
+    * "Jan"
+    * Null
+    * Undefined
+    * Error
+
+  // Someone changed the code! 
+  const data = '{"userid": "Jan"}';
+   
+  function getUserId(user) {
+    let obj = do {
+      try {
+        throw new Error("Oh No!");
       } catch {
         return null;
       }
     };
     return (obj.userId);
   }
-  //correct output : Jan
 
-  function getUserId(blob) {
-    let obj = do {
-      try {
-        throw "woops";
-      } catch {
-        return null;
-      }
-    };
-    return (obj.userId);
-  }
+  const output = getUserId(data);
+
+   What would you expect the result of `output` to be?
+    * "Jan"
+    * Null
+    * Undefined
+    * Error
+
   // correct output : null
 
 
@@ -113,53 +299,17 @@ Examples{
     }
   }
 
+   What can the value of `age` be?
+    * 42, 45
+    * 42, unknown, 45
+    * 45
+    * -Infinity
 
-
-  //How many shoes do I have
-  let AmountOfShoes = do {
-    while (ShoeRack != 0) {
-      ShoeRack--;
-      let x = x + 1;
-    }
-  };
-  // correct output : error
-  // with this question, we want to understan how people will interpret this step. It is less
-  // interesting if they get it right or wrong.
-  // Ask: How would you fix this?
-
-  // Can I play outside?
-  let playOutside = do {
-    if (homework()) {
-      while (!timeToBed()) {
-        true;
-      }
-    } else {
-      false;
-    }
-  };
-  // correct answer = error
-  // this is quite similar to above, but in a nested statement.
-  // Ask: how would you fix this?
-
-  //Can I go to the mall?
-  let goMall = do {
-    if (mallOpen) {
-      true;
-    }
-    else {
-      false;
-    }
-  }
-  //correct answer = boolean
-
-  //Can I buy new shoes?
-  let BuyShoes = do {
-    if (priceShoes < amountBank) {
-      true;
-    }
-  }
-  // correct answer = error
-  // Ask: How would you fix this?
+   What would you expect the final result of `maxAge` to be?
+    * 42
+    * unknown
+    * 45
+    * -Infinity
 
 
 }
